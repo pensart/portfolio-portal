@@ -55,13 +55,13 @@ if (isset($_POST['send']))
         $email_message = "Name: ".cleanString($data['name'])."\n";
         $email_message .= "Email: ".cleanString($data['email'])."\n";
         $email_message .= "Message: ".cleanString($data['message'])."\n";
-        $headers = 'From: '. EMAIL ."\r\n".'Reply-To: '. $data['email'] ."\r\n".'X-Mailer: PHP/' . phpversion();
+        $headers = 'From: '. $data['email'] ."\r\n".'Reply-To: '. $data['email'] ."\r\n".'X-Mailer: PHP/' . phpversion();
         
         // Reset when succeeded
         $data = null;
         echo '<div class="part-contact__form__success">Thank You for contacting me</div>';
         
-        //@mail(EMAIL, SUBJECT, $email_message, $headers);
+        @mail(EMAIL, SUBJECT, $email_message, $headers);
     }   
 
 }
