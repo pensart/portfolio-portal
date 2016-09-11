@@ -1,5 +1,3 @@
-"use strict";
-
 // -- Selectors --
 var selectedClass = "part-social__item__link";
 var dataAttention = document.getElementsByClassName(selectedClass);
@@ -10,9 +8,10 @@ function askAttention() {
     var random = Math.floor(Math.random() * dataAttention.length);
     dataAttention[random].className += " attention";
 
-    setTimeout(function () {
+    setTimeout(function() {
         dataAttention[random].className = selectedClass;
     }, 3000);
+
 }
 // -- Run --
 setInterval(askAttention, 5000);

@@ -1,0 +1,308 @@
+// ---------------------------------------------------------
+// SETTINGS
+// ---------------------------------------------------------
+$gradient: linear-gradient(135deg, hsl(0, 100%, 50%), hsl(260, 100%, 50%));
+$gradient-anim: shiftHue 30s linear infinite;
+$color-primary: #fafafa;
+// ---------------------------------------------------------
+//  CUSTOM MIXINS
+// ---------------------------------------------------------
+@mixin spaceyBorder ($fg-color, $bg-color) {
+
+  //  Media queries
+  $small: 550px;
+  $medium: 1000px;
+  $normal: 1500px;
+  $large: 2000px;
+  // height of the borders
+  $border-size: 30px;
+  // width of the borders
+  $border-small: 20%;
+  $border-medium: 30%;
+  $border-normal: 40%;
+  $border-large: 42%;
+
+  color: $fg-color;
+  background-color: $bg-color;
+
+  &__top, &__bottom {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: $border-size;
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      @media only screen and (min-width: $small) { width: $border-small; }
+      @media only screen and (min-width: $medium) {width: $border-medium; }
+      @media only screen and (min-width: $normal) { width: $border-normal; }
+      @media only screen and (min-width: $large) { width: $border-large; }
+      height: 0;
+    }
+  }
+
+  &__top {
+    top: 0;
+
+    &:before {
+      left: 0;
+    }
+    &:after {
+      right: 0;
+    }
+    &:before, &:after {
+      top: -$border-size;
+      border-bottom: $border-size solid $bg-color;
+    }
+  }
+
+  &__bottom {
+    bottom: -$border-size;
+    z-index: 1;
+
+    &:before {
+      left: 0;
+    }
+    &:after {
+      right: 0;
+    }
+    &:before, &:after {
+      top: 0;
+      border-top: $border-size solid $bg-color;
+    }
+  }
+
+  &__top:before, &__bottom:before {
+    border-right: $border-size solid transparent;
+  }
+
+  &__top:after, &__bottom:after {
+    border-left: $border-size solid transparent
+  }
+} // end mixin spaceyBorder
+
+// ---------------------------------------------------------
+// KEYFRAMES
+// ---------------------------------------------------------
+// Animate colors
+@keyframes shiftHue {
+  from {
+    filter: hue-rotate(0);
+  }
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+// Draw attention
+@keyframes swing {
+  20% {
+    transform: rotate(30deg);
+  }
+
+  40% {
+    transform: rotate(-15deg);
+  }
+
+  60% {
+    transform: rotate(5deg);
+  }
+
+  80% {
+    transform: rotate(-5deg);
+  }
+
+  to {
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+}
+// ---------------------------------------------------------
+//  MAIN STYLES
+// ---------------------------------------------------------
+body {
+  color: hsl(0,0,70%);
+  font-weight: 400;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  background-color: hsl(0,0,20%);
+}
+
+h1 {
+  font-weight: 700;
+}
+
+h2 {
+  margin: 20px 20px;
+  font-weight: 300;
+}
+.attention {
+  transform-origin: center center;
+  animation: swing 1s ease-out;
+}
+// ---------------------------------------------------------
+// HEADERS
+// ---------------------------------------------------------
+.header {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  display: table;
+  width: 100%;
+  color: $color-primary;
+  background: $gradient;
+  background-size: cover;
+  animation: $gradient-anim;
+
+  &__title {
+    margin: 35px 20px 0px;
+    font-size: 5em;
+    font-weight: 100;
+  }
+
+  &-contact {
+    position: relative;
+    overflow: hidden;
+    color: $color-primary;
+    background: $gradient;
+    background-size: cover;
+    animation: $gradient-anim;
+    z-index: -1;
+  }
+}
+.sub-header {
+  &:before, &:after {
+    content: "\2009\2014\2009";
+  }
+}
+// ---------------------------------------------------------
+//  SECTIONS
+// ---------------------------------------------------------
+.part {
+  position: relative;
+  padding: 50px;
+
+  &-social {
+    @extend .part;
+    @include spaceyBorder (hsl(0,0,10%), hsl(0,0,95%));
+
+    &__item {
+      box-sizing: border-box;
+      display: inline-block;
+      padding: 20px;
+      max-width: 300px;
+      vertical-align: top;
+
+      &__link {
+        outline: 0;
+        color: hsla(0,0,10%,1);
+        display: inline-block;
+        text-decoration: none;
+        transform: scale(1,1);
+        transition: all .2s ease-out;
+
+        &:hover {
+          color: hsla(0,0,10,.3);
+          transform: scale(2.5, 2.5);
+        }
+      }
+
+      &__icon {
+        font-size: 5em;
+        font-family: FontAwesome;
+
+        &--behance:before {
+          display: block;
+          @extend .part-social__item__icon;
+          content: "\f1b4";
+        }
+
+        &--codepen:before {
+          @extend .part-social__item__icon;
+          content: "\f1cb";
+        }
+
+        &--github:before {
+          @extend .part-social__item__icon;
+          content: "\f09b";
+        }
+      }
+    }
+  }
+
+  &-contact {
+    // contact form vars for portability of the form
+    $form-maxWidth: 600px;
+    $form-margin: 10px;
+    $form-padding: 20px;
+    $form-mainColor: hsl(0,0,10%);
+    $form-backGround: hsl(0,0,80%);
+
+    // dependent section rules
+    @extend .part;
+    @include spaceyBorder ($form-mainColor, $form-backGround);
+
+    // main form
+    &__form {
+      color: $form-mainColor;
+      margin: 0 auto;
+      max-width: $form-maxWidth;
+
+      &__input::placeholder {
+        color: $form-mainColor;
+      }
+
+      &__input, &__textarea, &__submit {
+        box-sizing: border-box;
+        display: block;
+        color: $form-mainColor;
+        margin: 0;
+        padding: $form-padding;
+        width: 100%;
+        border: 0;
+      }
+
+      &__input, &__textarea {
+        margin-bottom: $form-margin;
+        background-color: lighten($form-backGround, 20%);
+      }
+
+      &__textarea {
+        height: 7em;
+        resize: none;
+      }
+
+      &__error {
+        padding: 10px 20px;
+        text-align: left;
+        &:before {
+          font-family: 'FontAwesome';
+          content: '\f071\2003';
+        }
+      }
+
+      &__success {
+        padding: 20px;
+        &:before, &:after {
+          color: hsl(40,100%,50%);
+          font-family: 'FontAwesome';
+          content: '\2004\f005\2004';
+        }
+      }
+
+      &__submit {
+        text-transform: uppercase;
+        border:1px solid hsl(0,0,68%);
+        box-shadow: hsl(0,0,99%) 0px 1px 1px ;
+        font-weight: bold;
+        background-color: hsl(0,0,88%);
+        background-image: linear-gradient(to bottom, hsl(0,0,88%), hsl(330,1%,74%));
+
+        &:hover {
+          border:1px solid hsl(0,0,58%);
+          background-color: hsl(0,0,78%);
+          background-image: linear-gradient(to bottom, hsl(0,0,78%), hsl(330,1%,64%));
+        }
+      }
+    }
+  }
+}

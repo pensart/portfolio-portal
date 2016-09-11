@@ -73,7 +73,7 @@ if (isset($_POST['send']))
     <head>
         <meta charset="UTF-8">
         <title>Portfolio Guy Pensart</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 ">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
         <meta name="author" content="Guy Pensart">
         <meta name="description" content="Guy Pensart portfolio portal">
