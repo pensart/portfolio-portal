@@ -74,6 +74,11 @@ if (isset($_POST['send']))
         <meta charset="UTF-8">
         <title>Portfolio Guy Pensart</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 ">
+
+        <meta name="author" content="Guy Pensart">
+        <meta name="description" content="Guy Pensart portfolio portal">
+        <meta name="keywords" content="guy, pensart, html, css, scss, jade, 3d, 2d, illustration, animation, coding, webdesign">
+
         <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet">
         <!-- Temp bootstrap link to use the font awesome icons -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
