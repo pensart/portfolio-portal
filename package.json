@@ -1,0 +1,38 @@
+{
+  "name": "portfolio-portal",
+  "version": "1.0.0",
+  "description": "A portal to external portfolio's",
+  "main": "js/pensart.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pensart/portfolio-portal.git"
+  },
+  "keywords": [
+    "guy",
+    "pensart",
+    "portfolio"
+  ],
+  "author": "Guy Pensart",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pensart/portfolio-portal/issues"
+  },
+  "homepage": "https://github.com/pensart/portfolio-portal#readme",
+  "dependencies": {
+    "font-awesome": "^4.6.3",
+    "normalize": "^0.3.1"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.13.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0"
+  }
+}
