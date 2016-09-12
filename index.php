@@ -78,6 +78,8 @@ if (isset($_POST['send']))
         <meta name="author" content="Guy Pensart">
         <meta name="description" content="Guy Pensart portfolio portal">
         <meta name="keywords" content="guy, pensart, html, css, scss, jade, 3d, 2d, illustration, animation, coding, webdesign">
+        <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+        <link rel="icon" href="./favicon.ico" type="image/x-icon">
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet">
         <!-- Temp bootstrap link to use the font awesome icons -->
