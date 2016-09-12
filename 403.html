@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="robots" content="noindex,nofollow"/>
+    <meta http-equiv="refresh" content="10;URL=http://www.guypensart.be/" />
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300" rel="stylesheet">
+
+    <title>403</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            color: rgba(255,255,255,.7);
+            font-size: 18px;
+            font-weight: 300;
+        }
+
+        body {
+            display: table;
+            font-family: 'Lato', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #FF0000, #5500FF);
+        }
+
+        h1,
+        h2 {
+            margin: 0;
+            color: rgba(255,255,255,.9);
+            font-size: 5em;
+            font-weight: 100;
+        }
+
+        .wrapper {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    </style>
+
+</head>
+<body>
+<div class="wrapper">
+    <h1>Access denied!</h1>
+    <p>You don't have access to the page you requested!</p>
+    <h2 id="timer"></h2>
+    <p>Redirecting</p>
+</div>
+</body>
+<script type="text/javascript" >
+    function startTimer(seconds, selector) {
+
+        var delay = setInterval(function() {
+
+            // Convert to seconds
+            seconds = parseInt(seconds % 60, 10);
+            // Two characters for display
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            // Target the selector
+            selector.textContent = seconds;
+
+            if (--seconds < 0) { clearInterval(delay); }
+
+        }, 1000);
+
+    }
+
+    window.onload = function() {
+
+        var seconds = 9,
+                selector = document.querySelector('#timer');
+        selector.textContent = seconds + 1;
+        startTimer(seconds, selector);
+
+    };
+</script>
+</html>
