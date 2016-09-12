@@ -1,0 +1,3 @@
+ErrorDocument 403 /portfolio/403.html
+ErrorDocument 404 /portfolio/404.html
+#Options -Indexes
