@@ -111,14 +111,14 @@ if (isset($_POST['send']))
                     <div class="part-social__item__icon--codepen"></div>
                 </a>
                 <h1>Codepen</h1>
-                <p class="part-social__item__copy">My playground where i experiment with front-end code.</p>
+                <p class="part-social__item__copy">My playground where I experiment with front-end code.</p>
             </div>
             <div class="part-social__item">
                 <a class="part-social__item__link" href="http://www.github.com/pensart" target="_blank">
                     <div class="part-social__item__icon--github"></div>
                 </a>
                 <h1>Github</h1>
-                <p class="part-social__item__copy">Where i share full projects. Front and back-end code.</p>
+                <p class="part-social__item__copy">Where I share full projects. Front and back-end code.</p>
             </div>
             <div class="part-social__bottom"></div>
         </section>
