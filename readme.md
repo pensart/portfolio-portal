@@ -17,6 +17,7 @@ http://www.guypensart.be
 - [x] Add some meta tags for seo (still works)
 - [x] Custom error pages
 - [ ] Improve php validation writing a class
+In progress https://github.com/pensart/PHP-form-validation-class
 - [ ] Write javascript validation for real-time feedback
 - [x] Install node modules
 - [x] Write taskwatchers to compile scss & javascript
