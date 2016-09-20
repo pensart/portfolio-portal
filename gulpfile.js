@@ -21,6 +21,11 @@ var     babel = require('gulp-babel');
 // =======================================================================
 //      AVAILABLE TASKS
 // =======================================================================
+gulp.task('fonts', function() {
+    return gulp.src([
+        'node_modules/font-awesome/fonts/fontawesome-webfont.*'])
+        .pipe(gulp.dest('./fonts'));
+});
 
 gulp.task('styles', function () {
     return gulp.src('src/**/*.scss')
@@ -52,8 +57,9 @@ gulp.task('scripts', function() {
 });
 
 // =======================================================================
-//      DEFINE WATCHERS WHEN THINGS CHANGE
+//      DEFINE WATCHERS WHEN THINGS CHANGE OR TO BUILD
 // =======================================================================
+gulp.task('build', ['fonts']);
 
 gulp.task('default', ['styles', 'scripts'], function() {
     gulp.watch('src/**/*.scss', ['styles']);
