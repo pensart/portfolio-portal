@@ -28,16 +28,16 @@ if(empty($_POST)) {
         ->item('message')->required('Message is required')->min(22)->max(600)->text()->setValid();
         if($validate->errorsFree())
         {
+            // todo: fix outcome received mail format!
             $emailMessage = 'Name: '.$validate->getValue('name').'\n';
             $emailMessage .= 'Email: '.$validate->getValue('email').'\n';
             $emailMessage .= 'Message: '.$validate->getValue('message').'\n';
             $headers = 'From: '. $validate->getValue('email') .'\r\n'.'Reply-To: '. $validate->getValue('email') .'\r\n'.'X-Mailer: PHP/' . phpversion();
 
             // Reset when succeeded
-            $data = null;
             echo '<div class="part-contact__form__success">Thank You for contacting me</div>';
             // testing... echo '<div class="part-contact__form__success">'.$emailMessage.'</div>';
-            //@mail(EMAIL, SUBJECT, $emailMessage, $headers);
+            @mail(EMAIL, SUBJECT, $emailMessage, $headers);
             $validate->clearFields();
         }
 }
