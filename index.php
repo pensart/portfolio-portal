@@ -1,70 +1,48 @@
 <?php
-// Defining some vars to work with
-$data = ['name' => '', 'email' => '', 'message' => ''];
 
-// Main mail settings
+/**
+ * update: 20/09/2016 - form validation class
+ * @author Guy Pensart
+ * @link http://guypensart.be my personal site
+ */
+
+include 'FormValidatorClass.php';
 file_exists('./secret.php')
-? include_once "secret.php"
-: define('EMAIL', 'your.email@example.com') && define('SUBJECT', 'Example subject of the mail');
-    
-if (isset($_POST['send']))
-{
-    // Vars
-    $data = $_POST;
+    ? include_once "secret.php"
+    : define('EMAIL', 'your.email@example.com') && define('SUBJECT', 'Example subject of the mail');
 
-    // Super basic form validation, will write a validator class soon
-    function validateForm($data)
-    {
-        $errors = array();
-        // Regexes
-        $regex_string = "/^[A-Za-z ]+$/";
-        $regex_email = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
-        // Rules
-        if(empty($data['name'])) {
-            $errors['name'] = 'This field is still empty?';
-        }elseif(strlen($data['name']) <2) {
-            $errors['name'] = 'Only 1 character?';
-        }elseif(!preg_match($regex_string, $data['name'])) {
-            $errors['name'] = 'Only alpha characters and spaces please';
+$placeholder =
+    [
+        'name'=>'Placeholder name',
+        'email'=>'Placeholder email',
+        'message'=>'Placeholder message'
+    ];
+
+if(empty($_POST)) {
+    $validate = new FormValidatorClass(array());
+} else {
+    $validate = new FormValidatorClass($_POST);
+    $validate
+        ->item('name')->required('Name is required')->min(3)->max(40)->alphabet()->setValid()
+        ->item('email')->required('E-mail is required')->min(8)->max(60)->email()->setValid()
+        ->item('message')->required('Message is required')->min(22)->max(600)->text()->setValid();
+        if($validate->errorsFree())
+        {
+            $emailMessage = 'Name: '.$validate->getValue('name').'\n';
+            $emailMessage .= 'Email: '.$validate->getValue('email').'\n';
+            $emailMessage .= 'Message: '.$validate->getValue('message').'\n';
+            $headers = 'From: '. $validate->getValue('email') .'\r\n'.'Reply-To: '. $validate->getValue('email') .'\r\n'.'X-Mailer: PHP/' . phpversion();
+
+            // Reset when succeeded
+            $data = null;
+            echo '<div class="part-contact__form__success">Thank You for contacting me</div>';
+            // testing... echo '<div class="part-contact__form__success">'.$emailMessage.'</div>';
+            //@mail(EMAIL, SUBJECT, $emailMessage, $headers);
+            $validate->clearFields();
         }
-        if(empty($data['email'])) {
-            $errors['email'] = 'This field is still empty?';
-        }elseif(!preg_match($regex_email, $data['email'])) {
-            $errors['email'] = 'This is not a valid email adress';
-        }
-        if(empty($data['message'])) {
-            $errors['message'] = 'This field is still empty?';
-        }elseif(strlen($data['message']) < 10) {
-            $errors['message'] = 'At least 10 characters required.';
-        }
-
-        return $errors;     
-    }
-
-    function cleanString($string)
-    {
-        $danger = array("content-type","bcc:","to:","cc:","href");
-        return str_replace($danger,"",$string);
-    }
-
-    // Check if all fields have content
-    $errors = validateForm($data);
- 
-    if(empty($errors))
-    {
-        $email_message = "Name: ".cleanString($data['name'])."\n";
-        $email_message .= "Email: ".cleanString($data['email'])."\n";
-        $email_message .= "Message: ".cleanString($data['message'])."\n";
-        $headers = 'From: '. $data['email'] ."\r\n".'Reply-To: '. $data['email'] ."\r\n".'X-Mailer: PHP/' . phpversion();
-        
-        // Reset when succeeded
-        $data = null;
-        echo '<div class="part-contact__form__success">Thank You for contacting me</div>';
-        
-        @mail(EMAIL, SUBJECT, $email_message, $headers);
-    }   
-
 }
+
+
 
 ?>
 <!DOCTYPE html>
@@ -93,10 +71,10 @@ if (isset($_POST['send']))
         <!-- Todo: clean and convert to pure HTML5 -->
         <section class="header">
             <h1 class="header__title">Guy Pensart</h1>
-            <h2 class="sub-header" ><?php echo !empty($errors) ? 'Form failure' : 'Design &amp;&nbsp;Code'; ?></h2>
+            <h2 class="sub-header" ><?= !$validate->errorsFree() ? 'Form failure' : 'Design&nbsp;&amp;&nbsp;Code'; ?></h2>
         </section>
         
-        <?php if(empty($errors)): ?>
+        <?php if($validate->errorsFree()): ?>
         <section class="part-social">
             <div class="part-social__top"></div>
             <div class="part-social__item">
@@ -128,30 +106,21 @@ if (isset($_POST['send']))
         <?php endif; ?>
         <section class="part-contact">
             <div class="part-contact__top"></div>
-
             <form class="part-contact__form" method="post" enctype="application/x-www-form-urlencoded">
-                <?php if(!empty($errors['name'])): ?>
-                    <div class="part-contact__form__error">
-                        <?php echo $errors['name']; ?>
-                    </div>
+                <?php if(!$validate->errorsFree() && !$validate->getValid('name')): ?>
+                    <div class="part-contact__form__error"><?= $validate->getError('name'); ?></div>
                 <?php endif; ?>
-                <input type="text" class="part-contact__form__input" name="name" placeholder="Name" value="<? echo $data['name']; ?>" >
-                <?php if(!empty($errors['email'])): ?>
-                    <div class="part-contact__form__error">
-                        <?php echo $errors['email']; ?>
-                    </div>
+                <input type="text" class="part-contact__form__input" name="name" placeholder=<?= '"'.$placeholder['name'].'"';?> value="<?= $validate->getValue('name'); ?>" >
+                <?php if(!$validate->errorsFree() && !$validate->getValid('email')): ?>
+                    <div class="part-contact__form__error"><?= $validate->getError('email'); ?></div>
                 <?php endif; ?>
-                <input type="text" class="part-contact__form__input" name="email" placeholder="Email" value="<?php echo $data['email']; ?>">
-                <?php if(!empty($errors['message'])): ?>
-                    <div class="part-contact__form__error">
-                        <?php echo $errors['message']; ?>
-                    </div>
+                <input type="text" class="part-contact__form__input" name="email" placeholder=<?= '"'.$placeholder['email'].'"';?> value="<?= $validate->getValue('email'); ?>">
+                <?php if(!$validate->errorsFree() && !$validate->getValid('message')): ?>
+                    <div class="part-contact__form__error"><?= $validate->getError('message'); ?></div>
                 <?php endif; ?>
-                <textarea class="part-contact__form__textarea" name="message"><?php echo $data['message']; ?></textarea>
-                <input type="submit" class="part-contact__form__submit" name="send" value="send message">
-                
+                <textarea class="part-contact__form__textarea" name="message" placeholder=<?= '"'.$placeholder['email'].'"';?>><?= $validate->getValue('message'); ?></textarea>
+                <input type="submit" class="part-contact__form__submit" value="send message">
             </form>
-
             <div class="part-contact__bottom"></div>
         </section>
         <script src="js/pensart.js" type="text/javascript"></script>
