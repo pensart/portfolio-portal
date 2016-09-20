@@ -29,10 +29,10 @@ if(empty($_POST)) {
         if($validate->errorsFree())
         {
             // todo: fix outcome received mail format!
-            $emailMessage = 'Name: '.$validate->getValue('name').'\n';
-            $emailMessage .= 'Email: '.$validate->getValue('email').'\n';
-            $emailMessage .= 'Message: '.$validate->getValue('message').'\n';
-            $headers = 'From: '. $validate->getValue('email') .'\r\n'.'Reply-To: '. $validate->getValue('email') .'\r\n'.'X-Mailer: PHP/' . phpversion();
+            $emailMessage = 'Name: '.$validate->getValue('name')."\n";
+            $emailMessage .= 'Email: '.$validate->getValue('email')."\n";
+            $emailMessage .= 'Message: '.$validate->getValue('message')."\n";
+            $headers = 'From: '. $validate->getValue('email') ."\r\n".'Reply-To: '. $validate->getValue('email') ."\r\n".'X-Mailer: PHP/' . phpversion();
 
             // Reset when succeeded
             echo '<div class="part-contact__form__success">Thank You for contacting me</div>';
