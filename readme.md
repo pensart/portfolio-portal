@@ -21,6 +21,7 @@ In progress https://github.com/pensart/PHP-form-validation-class
 - [ ] Write javascript validation for real-time feedback
 - [x] Install node modules
 - [x] Write taskwatchers to compile scss & javascript
+- [ ] Remove the need of http: requests (font-awesome, lato font)
 
 ### Installation nodes
 After downloading or cloning the project you need to install some dependency's first.
