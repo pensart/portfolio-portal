@@ -23,7 +23,7 @@ In progress https://github.com/pensart/PHP-form-validation-class
 - [x] Write taskwatchers to compile scss & javascript
 
 ### Installation nodes
-After downloading or cloning the project you need to install some things first.
+After downloading or cloning the project you need to install some dependency's first.
 Start with installing the node modules...
 ```
 nmp install --only=production
