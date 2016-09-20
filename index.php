@@ -13,9 +13,9 @@ file_exists('./secret.php')
 
 $placeholder =
     [
-        'name'=>'Placeholder name',
-        'email'=>'Placeholder email',
-        'message'=>'Placeholder message'
+        'name'=>'Name',
+        'email'=>'E-mail',
+        'message'=>'Message'
     ];
 
 if(empty($_POST)) {
@@ -114,7 +114,7 @@ if(empty($_POST)) {
                 <?php if(!$validate->errorsFree() && !$validate->getValid('message')): ?>
                     <div class="part-contact__form__error"><?= $validate->getError('message'); ?></div>
                 <?php endif; ?>
-                <textarea class="part-contact__form__textarea" name="message" placeholder=<?= '"'.$placeholder['email'].'"';?>><?= $validate->getValue('message'); ?></textarea>
+                <textarea class="part-contact__form__textarea" name="message" placeholder=<?= '"'.$placeholder['message'].'"';?>><?= $validate->getValue('message'); ?></textarea>
                 <input type="submit" class="part-contact__form__submit" value="send message">
             </form>
             <div class="part-contact__bottom"></div>
