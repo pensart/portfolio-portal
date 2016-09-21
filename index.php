@@ -51,13 +51,7 @@ if(empty($_POST)) {
         <meta name="keywords" content="guy, pensart, html, css, scss, jade, 3d, 2d, illustration, animation, coding, webdesign">
         <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
         <link rel="icon" href="./favicon.ico" type="image/x-icon">
-
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet">
-        <!-- Temp bootstrap link to use the font awesome icons -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel="stylesheet">
         <link rel="stylesheet" href="css/pensart.css">
-
     </head>
 
     <body>
