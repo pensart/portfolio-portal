@@ -39,7 +39,7 @@ class FormValidatorClass
 
     private
     $regExAlphabet = '/[^a-zA-Z -]+/',
-    $regExText = '/[^\n\ra-zA-Zé@()è!€$£%?.:+_ -]+/';
+    $regExText = '/[^\n\ra-zA-Z0-9é@()è!€$£%?.:+_ -]+/';
 
     /**
      * FormValidatorClass constructor.
