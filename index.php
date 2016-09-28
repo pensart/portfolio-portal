@@ -59,35 +59,35 @@ if(empty($_POST)) {
             <div class="part-contact__form__success">Thank You for contacting me</div>
         <?php endif; ?>
         <!-- Todo: clean and convert to pure HTML5 -->
-        <section class="header">
+        <header class="header">
             <h1 class="header__title">Guy Pensart</h1>
             <h2 class="sub-header" ><?= !$validate->errorsFree() ? 'Form failure' : 'Design&nbsp;&amp;&nbsp;Code'; ?></h2>
-        </section>
+        </header>
         
         <?php if($validate->errorsFree()): ?>
         <section class="part-social">
             <div class="part-social__top"></div>
-            <div class="part-social__item">
+            <article class="part-social__item">
                 <a class="part-social__item__link" href="http://www.behance.com/pensart" target="_blank">
                     <div class="part-social__item__icon--behance js-attention"></div>
                 </a>
                 <h1>Behance</h1>
                 <p class="part-social__item__copy">Discover my passion for webdesign, logo's and illustration.</p>
-            </div>
-            <div class="part-social__item">
+            </article>
+            <article class="part-social__item">
                 <a class="part-social__item__link" href="http://www.codepen.io/pensart" target="_blank">
                     <div class="part-social__item__icon--codepen"></div>
                 </a>
                 <h1>Codepen</h1>
                 <p class="part-social__item__copy">My playground where I experiment with front-end code.</p>
-            </div>
-            <div class="part-social__item">
+            </article>
+            <article class="part-social__item">
                 <a class="part-social__item__link" href="http://www.github.com/pensart" target="_blank">
                     <div class="part-social__item__icon--github"></div>
                 </a>
                 <h1>Github</h1>
                 <p class="part-social__item__copy">Where I share full projects. Front and back-end code.</p>
-            </div>
+            </article>
             <div class="part-social__bottom"></div>
         </section>
         <header class="header-contact">
