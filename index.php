@@ -96,7 +96,7 @@ if(empty($_POST)) {
         <?php endif; ?>
         <section class="part-contact">
             <div class="part-contact__top"></div>
-            <form class="part-contact__form" method="post" enctype="application/x-www-form-urlencoded">
+            <form class="part-contact__form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                 <?php if(!$validate->errorsFree() && !$validate->getValid('name')): ?>
                     <div class="part-contact__form__error"><?= $validate->getError('name'); ?></div>
                 <?php endif; ?>

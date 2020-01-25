@@ -17,6 +17,9 @@ class splitToObject
      */
     function __construct($value)
     {
+        $value = trim($value);
+        $value = stripslashes($value);
+        $value = htmlspecialchars($value);
         $this->value = $value;
         $this->error = '';
         $this->valid = FALSE;
@@ -48,7 +51,7 @@ class FormValidatorClass
     function __construct($post)
     {
         foreach ($post as $key => $value):
-            $this->input[$key] = new splitToObject(trim($value));
+            $this->input[$key] = new splitToObject($value);
         endforeach;
     }
 
