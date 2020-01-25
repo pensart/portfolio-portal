@@ -9,7 +9,7 @@
 include 'FormValidatorClass.php';
 file_exists('./secret.php')
     ? include_once "secret.php"
-    : define('EMAIL', 'your.email@example.com') && define('SUBJECT', 'Example subject of the mail');
+    : define('EMAIL', 'your.email@example.com') && define('SUBJECT', 'Example subject of the mail') && define('FROM', 'no-spam@example.com');
 
 $placeholder =
     [
@@ -31,7 +31,7 @@ if(empty($_POST)) {
             $emailMessage = 'Name: '.$validate->getValue('name')."\n";
             $emailMessage .= 'Email: '.$validate->getValue('email')."\n";
             $emailMessage .= 'Message: '.$validate->getValue('message')."\n";
-            $headers = 'From: '. $validate->getValue('email') ."\r\n".'Reply-To: '. $validate->getValue('email') ."\r\n".'X-Mailer: PHP/' . phpversion();
+            $headers = 'From: '. FROM ."\r\n".'Reply-To: '. $validate->getValue('email') ."\r\n".'X-Mailer: PHP/' . phpversion();
             @mail(EMAIL, SUBJECT, $emailMessage, $headers);
             $validate->clearFields();
         }
