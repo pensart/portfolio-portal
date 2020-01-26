@@ -100,11 +100,11 @@ if(empty($_POST)) {
                 <?php if(!$validate->errorsFree() && !$validate->getValid('name')): ?>
                     <div class="part-contact__form__error"><?= $validate->getError('name'); ?></div>
                 <?php endif; ?>
-                <input type="text" class="part-contact__form__input" name="name" placeholder=<?= '"'.$placeholder['name'].'"';?> value="<?= $validate->getValue('name'); ?>" >
+                <input type="text" class="part-contact__form__input" name="name" placeholder=<?= '"'.$placeholder['name'].'"';?> value="<?= $validate->getValue('name'); ?>" id="name" onkeyup="validateInput(this.value)" required>
                 <?php if(!$validate->errorsFree() && !$validate->getValid('email')): ?>
                     <div class="part-contact__form__error"><?= $validate->getError('email'); ?></div>
                 <?php endif; ?>
-                <input type="text" class="part-contact__form__input" name="email" placeholder=<?= '"'.$placeholder['email'].'"';?> value="<?= $validate->getValue('email'); ?>">
+                <input type="email" class="part-contact__form__input" name="email" placeholder=<?= '"'.$placeholder['email'].'"';?> value="<?= $validate->getValue('email'); ?>" required>
                 <?php if(!$validate->errorsFree() && !$validate->getValid('message')): ?>
                     <div class="part-contact__form__error"><?= $validate->getError('message'); ?></div>
                 <?php endif; ?>

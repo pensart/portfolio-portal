@@ -16,3 +16,17 @@ function askAttention() {
 }
 // -- Run --
 setInterval(askAttention, 5000);
+
+function validateInput(str) {
+    var xmlhttp = new XMLHttpRequest();
+    var params = 'name=guypensart&email=guypensart@test.be&message=ditiseengeweldigvoorbeeld';
+    xmlhttp.open("POST", "handleForm.php", true);
+    xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var myObj = JSON.parse(this.responseText);
+        console.log(myObj);
+      }
+    };
+    xmlhttp.send(params);
+  }
