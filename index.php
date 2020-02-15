@@ -25,7 +25,7 @@ if(empty($_POST)) {
     $validate
         ->item('name')->required('Name is required')->min(3)->max(40)->alphabet()->setValid()
         ->item('email')->required('E-mail is required')->min(8)->max(60)->email()->setValid()
-        ->item('message')->required('Message is required')->min(22)->max(600)->text()->setValid();
+        ->item('message')->required('Message is required')->min(22)->max(600)->setValid();
         if($validate->errorsFree())
         {
             $emailMessage = 'Name: '.$validate->getValue('name')."\n";
@@ -96,7 +96,7 @@ if(empty($_POST)) {
         <?php endif; ?>
         <section class="part-contact">
             <div class="part-contact__top"></div>
-            <form class="part-contact__form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <form class="part-contact__form" method="post">
                 <?php if(!$validate->errorsFree() && !$validate->getValid('name')): ?>
                     <div class="part-contact__form__error"><?= $validate->getError('name'); ?></div>
                 <?php endif; ?>

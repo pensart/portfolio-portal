@@ -274,23 +274,4 @@ class FormValidatorClass
         }
         return $this;
     }
-
-    /**
-     * Prohibit special characters validation
-     * @param null $errorMsg
-     * @return $this->nextRule
-     */
-    function text($errorMsg=NULL)
-    {
-        if ($this->nextRule && (!empty($this->currentInput->value)))
-        {
-            // Automatic cleaning? just uncomment following lines!
-            //$this->currentInput->value = filter_var($this->currentInput->value, FILTER_SANITIZE_STRIPPED);
-            //$this->currentInput->value = preg_replace($this->regExText, '', $this->currentInput->value);
-            $this->nextRule = (!preg_match($this->regExText, $this->currentInput->value)) ? TRUE : FALSE;
-            if (!$this->nextRule)
-                $this->setErrorMsg($errorMsg, 'Remove special characters');
-        }
-        return $this;
-    }
 }
