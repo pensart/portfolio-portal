@@ -662,12 +662,16 @@ h2 {
         height: 7em;
         resize: none; }
       .part-contact__form__error {
-        padding: 10px 20px;
+        padding: 10px 0;
         text-align: left; }
-        .part-contact__form__error:before {
-          font-family: 'FontAwesome';
-          content: '\f071\2003'; }
+      .part-contact__form__error span {
+        display: none;
+        font-style: italic;
+        font-size: .8rem;
+        opacity: .5;
+      }
       .part-contact__form__success {
+        display: none;
         padding: 20px; }
         .part-contact__form__success:before, .part-contact__form__success:after {
           color: #ffaa00;
@@ -680,6 +684,9 @@ h2 {
         font-weight: bold;
         background-color: #e0e0e0;
         background-image: linear-gradient(to bottom, #e0e0e0, #bdbcbd); }
+        .part-contact__form__submit[disabled] {
+          opacity: .3;
+        }
         .part-contact__form__submit:hover {
           border: 1px solid #949494;
           background-color: #c7c7c7;
